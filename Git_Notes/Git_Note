@@ -1,0 +1,53 @@
+--------------------------------------------------------------
+
+Creat and commit a git
+
+$ git init
+some change
+$ git add .
+$ git commit -m "some comment"
+$ git add remote origin https://github.com/qiang-cynthia/Git_Name
+$ git push origin master
+$ git status
+$ git log
+
+--------------------------------------------------------------
+
+Pull a git 
+
+$ git init
+$ git add .
+$ git add remote origin https://github.com/qiang-cynthia/Git_Name
+$ git pull origin master
+some change
+$ git add .
+$ git commit -m "some comment"
+$ git push origin master
+$ git status
+$ git log
+some change in other repository
+$ git pull origin master
+$ git status
+$ git log
+
+--------------------------------------------------------------
+
+Pull a particular git
+
+$ git checkout <commit ID>
+
+--------------------------------------------------------------
+
+Branch
+
+$ git checkout -b <branch_name>
+--> creat a new branch
+
+$ git checkout <branch_name>
+--> switch to the existed branch
+
+$ git branch
+--> check the status of branches
+
+$ git merge <branch_name>
+--> merge another branch to the current branch

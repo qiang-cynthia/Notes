@@ -1,0 +1,302 @@
+--------------------------------------------------------------
+
+Enable Python 3 support in Vim 8:
+
+$ git clone https://github.com/vim/vim.git
+$ cd vim/src
+$ ./configure --with-features=huge --enable-python3interp
+$ make
+$ sudo make install
+
+--------------------------------------------------------------
+
+Configure with .vimrc:
+
+--> typical content of the .vimrc file:
+
+syntax on
+filetype on
+filetype plugin indent on
+set nu
+
+set autoindent smartindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set backspace=2
+
+colorscheme koehler
+
+"change the shape of cursor
+autocmd InsertEnter,InsertLeave * set cul!
+
+"fast spit navigation with <Ctrl> + hjkl
+noremap <c-h> <c-w><c-h>
+noremap <c-j> <c-w><c-j>
+noremap <c-k> <c-w><c-k>
+noremap <c-l> <c-w><c-l>
+
+"enable plugins
+packloadall            "load all plugins
+silent! helptags ALL   "load help files for all plugins
+
+"configure foldmethod
+set foldmethod=indent
+
+"set search highlight
+set hlsearch
+set incsearch
+
+--> Lines staring with a double quote " are comments.
+--> Try things out before adding them to the .vimrc file, by typing : followed by a command with ? at the end.
+
+--------------------------------------------------------------
+
+Commands:
+
+:source $MYVIMRC
+--> reload the .vimrc file
+
+:help features-list
+--> for a list of all features Vim can have enabled
+
+:linux command
+--> to use linux command in vim. If not worked, use a :! prefix instead of :.
+--> eg. :!echo $HOME, :!echo $MYVIMRC.
+
+:e filename
+--> load a new file to edit in the current opeing file window.
+
+:!ls
+--> list all contents in some directory
+
+:ls
+--> list all buffers
+
+:b [num,filename]
+--> switch to some buffer
+
+:b[n,p]
+--> switch to next or previous buffer
+
+:bd
+--> delete buffer without quitting vim
+
+:vs
+--> split window vertically
+
+:sp
+--> split window horizontally
+
+:tabnew [filename]
+--> open a new tab
+
+:tabclose [filename]
+--> close a tab
+
+:Sex
+--> open the file navigation window(Netrw) above the current window, then you can place the Netrw window to the bottom by Ctrl+w+J
+
+:vimgrep pattern path
+--> search across files
+:c[np]
+--> move to the result
+:copen
+--> open a visual quickfix window
+
+"register_identifier
+--> prefix for register identifying with a register-identifier, which can be num/letter/symbol for your need. eg. "5ym means to copy the word to a register named 5, and then you can access the register by "5p, pasting the content in register 5. So it is a good habit to operate the regitster with an identifier as you like, then you can easily access it whenever you need
+
+:reg [register_name......]
+--> check the content in register
+
+:Ctrl+f
+--> list the commands history
+
+:terminal
+--> open a terminal in a horizontal split
+
+--------------------------------------------------------------
+
+Operations:
+
+i
+--> add before cursor
+I
+--> add at the begining of the current line
+a
+--> add after cursor
+A
+--> add at the end of the current line
+o
+--> add a new line below the current line
+O
+--> add a new line before the current line
+
+x
+--> delete the char above the current cursor
+d[[num]webWEBhjkl$0]
+--> delete something 
+dd
+--> delete the whole line
+C
+--> delete to the end of the line, and enter the insert mode 
+cc
+--> delete the whole line, and enter the insert mode with the proper indent.
+
+r new_char
+--> replace the old_char above the cursor with the new_char
+R new_chars
+--> replace the old_chars above and after the cursor with the new_chars
+c[[num]webWEBhjkl$0]
+--> replade something by typing some new thing
+
+t char
+--> search the line for the character and place the cursor before it
+f char
+--> find the line for the character and place the cursor to it
+
+b
+--> move to the beginning of the previous word
+ge
+--> move to the end of the previous word
+gi
+--> move to where you last exit in insert mode
+gt
+--> move between tabs
+shift+[{}]
+--> move the beginning/end of the paragraph
+shift+[()]
+--> move the beginning/end of the sentence
+H
+--> move to the top of the current window
+L
+--> move to bottom of the current window
+
+z[oc]
+--> open/close the current fold
+z[RM]
+--> open/close all folds
+za
+--> toggle the current fold
+
+v
+--> visual mode with character-wise
+V
+--> visual mode with line-wise
+Ctrl+v
+--> visual mode with block-wise
+
+--------------------------------------------------------------
+
+Operation Table:
+    lower   upper   Ctrl+
+a
+b
+c
+d
+e
+
+todo: add mode and cheat-sheet
+
+--------------------------------------------------------------
+
+Installing Plugins:
+
+$ mkdir -p ~/.vim/pack/plugins/start
+$ git clone https://github.com/****.git ~/.vim/pack/plugins/start/****
+$ source ~/.vimrc
+
+Install YouCompleteMe:
+
+$ git clone https://github.com/Valloric/YouCompleteMe.git ~/.vim/pack/plugins/start
+$ cd ~/.vim/pack/plugins/start/YouCompleteMe
+$ git submodule update --init --recursive 
+$ sudo apt install python2.7-dev
+$ ./install.py --clang-completer
+$ source ~/.vimrc
+
+--------------------------------------------------------------
+
+Windows Operations Ctrl+w:
+
+[hjkl]
+--> switch to the left/below/above/right window
+[HJKL]
+--> move the current window to the leftmost/bottom/top/rightmost
+[qo]
+--> close the current window/all windows except for the current window
+=
+--> equalize the height and width of all open windows
+[-+<>]
+--> change the height/width of the window
+
+--------------------------------------------------------------
+
+Objcets:
+
+Paragrah, Section, Sentence Object
+--> {, }, [[, ]], (, )
+
+Line Object
+
+[number]G
+
+[number]H
+--> number of lines after the first line on the current screen
+
+[number]L
+--> number of lines before the last line on the current screen
+
+M
+--> the middle line on the current screen
+
+j, k
+
+_
+--> the whole current line
+
+Position within a line
+
+0, $, ^, g_, t<char>, T<char>, f<char>, F<char>
+
+[number]|
+--> column number of the current line
+
+;
+--> repetition of the last t, T, f, F command in the current line. Take care that the ; command is different from the . command
+
+,
+--> repetition of the last t, T, f, F command in the current line in opposite direction 
+
+Word Object
+
+w, W, b, B, e
+
+Character Object
+
+h, l
+
+Pattern Matching Object
+
+/pattern/, ?pattern?
+
+<n>
+--> repeat the last / or ?
+
+<N>
+--> repeat the last / or ? in opposite direction
+
+<%>
+--> to next matching (, {, or [
+
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+
+Tips:
+
+--> We can always use the general style: number operation [number] object. The operation can be c,d,y, etc. The object is someting we want to handle, sometimes it is obvious, for example, <char>, w,but in some situations, it could be t<char>,f<char>,/<pattern>,$,0, etc, which are not obvious object. Whether the object is obvious or not, we can certify the object of the operation, then the object makes sense. So we have to make sure the object and the operation. In the other word, we should confirm the accurate position before an operation to make sure that the object makes sense. In additon, take a special look at the number before object: the number is different from the number in front of operation, and the former indicates the counts of the operation, whlie the latter can be combined with the object to be a whole object, which means you can make an operation to the whole object every time, for many times. So the former number means the times of operation, and the latter number means the number of the object, which can be combined together to get a new object. In short, you can operate number of objects which can also be treated as a new object for several times.
+
+--------------------------------------------------------------
+
