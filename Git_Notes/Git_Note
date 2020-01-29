@@ -6,6 +6,7 @@ $ git init
 some change
 $ git add .
 $ git commit -m "some comment"
+or $ git commit -v(enter the commit message on the 1st line)
 $ git add remote origin https://github.com/qiang-cynthia/Git_Name
 $ git push origin master
 $ git status
@@ -22,6 +23,7 @@ $ git pull origin master
 some change
 $ git add .
 $ git commit -m "some comment"
+or $ git commit -v(enter the commit message on the 1st line)
 $ git push origin master
 $ git status
 $ git log
