@@ -1,5 +1,20 @@
 --------------------------------------------------------------
 
+$ git --help
+--> get main commands of git
+
+$ man git
+--> get thorough use of git
+
+$ git help [command]
+$ git [command] --help
+--> get thorough use of command
+
+$ git [command] -h
+--> get main use of command
+
+--------------------------------------------------------------
+
 Creat and commit a git
 
 $ git init
