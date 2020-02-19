@@ -68,3 +68,30 @@ $ git branch
 
 $ git merge <branch_name>
 --> merge another branch to the current branch
+
+--------------------------------------------------------------
+
+Git reset & git checkout & git revert
+
+The git checkout command can be used in a commit, or file level scope. A file level checkout will change the file's contents to those of the specific commit.
+
+The git reset command takes a specified commit to match the state of the repository at that specified commit, it can be invoked in three different modes which correspond to the three trees.
+
+The git revert command takes a specified commit and creates a new commit which inverses the specified commit, it can only be run at a commit level scope and has no file level functionality.
+
+Checkout and reset are generally used for making local or private 'undos'. They modify the history of a repository that can cause conflicts when pushing to remote shared repositories. Revert is considered a safe operation for 'public undos' as it creates new history which can be shared remotely and doesn't overwrite history remote team members may be dependent on.
+
+$ git reset file_name
+--> unstage the file that not be tracked, and the file will be moved form the stage to the working directory.
+
+$ git reset commit_value
+--> discard commits in a private branch or throw away uncommited changes.
+
+$ git checkout file_name
+--> discard changes in the working directory.
+
+$ git checkout commit_value
+--> switch between branches or inspect old stages.
+
+$ git revert commit_value
+--> undo commits in a public branch.
