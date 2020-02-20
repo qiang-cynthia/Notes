@@ -46,6 +46,26 @@ set foldmethod=indent
 "set search highlight
 set hlsearch
 set incsearch
+set ignorecase
+
+"set external copy to enable internal paste
+set clipboard=unnamed
+
+set noswapfile
+
+"open a new vertical window on the right when using :vnew command
+set splitright
+
+"open a new horizontal window below when using :new command
+set splitbelow
+
+"wrap a line by word
+set linebreak
+
+"show the command you'ra typing
+set showcmd
+
+set scrolloff=3
 
 --> Lines staring with a double quote " are comments.
 --> Try things out before adding them to the .vimrc file, by typing : followed by a command with ? at the end.
@@ -70,14 +90,17 @@ Commands:
 :!ls
 --> list all contents in some directory
 
+:r !linux_command .....
+--> copy the linux command result to the current cursor
+
 :ls
 --> list all buffers
 
 :b [num,filename]
 --> switch to some buffer
 
-:b[n,p]
---> switch to next or previous buffer
+:b[n,p,f,l]
+--> switch to next, previous, first or last buffer
 
 :bd
 --> delete buffer without quitting vim
@@ -85,14 +108,23 @@ Commands:
 :vs
 --> split window vertically
 
+:vnew
+--> open a new window vertically
+
 :sp
 --> split window horizontally
+
+:new
+--> open a new window horizontally
 
 :tabnew [filename]
 --> open a new tab
 
 :tabclose [filename]
 --> close a tab
+
+:tab ba
+--> put each buff into seperate tab
 
 :Sex
 --> open the file navigation window(Netrw) above the current window, then you can place the Netrw window to the bottom by Ctrl+w+J
@@ -162,7 +194,7 @@ ge
 --> move to the end of the previous word
 gi
 --> move to where you last exit in insert mode
-gt
+gt or gT
 --> move between tabs
 shift+[{}]
 --> move the beginning/end of the paragraph
@@ -172,6 +204,8 @@ H
 --> move to the top of the current window
 L
 --> move to bottom of the current window
+J
+--> combine the line below to the current line
 
 z[oc]
 --> open/close the current fold
@@ -179,6 +213,12 @@ z[RM]
 --> open/close all folds
 za
 --> toggle the current fold
+zz
+--> make the current line to the middle of the screen
+zf
+--> collaps the selected lines
+zd
+--> open the collaps
 
 v
 --> visual mode with character-wise
@@ -186,6 +226,9 @@ V
 --> visual mode with line-wise
 Ctrl+v
 --> visual mode with block-wise
+
+=
+--> auto indent your selected code according the type of your coding language
 
 --------------------------------------------------------------
 
@@ -296,7 +339,9 @@ Pattern Matching Object
 
 Tips:
 
---> We can always use the general style: number operation [number] object. The operation can be c,d,y, etc. The object is someting we want to handle, sometimes it is obvious, for example, <char>, w,but in some situations, it could be t<char>,f<char>,/<pattern>,$,0, etc, which are not obvious object. Whether the object is obvious or not, we can certify the object of the operation, then the object makes sense. So we have to make sure the object and the operation. In the other word, we should confirm the accurate position before an operation to make sure that the object makes sense. In additon, take a special look at the number before object: the number is different from the number in front of operation, and the former indicates the counts of the operation, whlie the latter can be combined with the object to be a whole object, which means you can make an operation to the whole object every time, for many times. So the former number means the times of operation, and the latter number means the number of the object, which can be combined together to get a new object. In short, you can operate number of objects which can also be treated as a new object for several times.
+--> We can always use the general style: number operation [number] scope object. The operation can be v(isual, meaning select), c(hange), d(elete), y(ank), etc.The scope indicates i which means inner, or a which means around. The object is someting we want to handle, sometimes it is obvious, for example, <char>, w, s(entence), p(argraph), t(ag), but in some situations, it could be t<char>,f<char>,/<pattern>,$,0, etc, which are not obvious object. Whether the object is obvious or not, we can certify the object of the operation, then the object makes sense. So we have to make sure the object and the operation. In the other word, we should confirm the accurate position before an operation to make sure that the object makes sense. In additon, take a special look at the number before object: the number is different from the number in front of operation, and the former indicates the counts of the operation, whlie the latter can be combined with the object to be a whole object, which means you can make an operation to the whole object every time, for many times. So the former number means the times of operation, and the latter number means the number of the object, which can be combined together to get a new object. In short, you can operate number of objects which can also be treated as a new object for several times.
+
+--> We can open several files simultaneously: Ctrl -o file_name ...... can open the files in several windows horizontally, and Ctrl -O file_name ...... can open the files in several windows vertically, besides, Ctrl -p file_name ...... can open the files in several tabs.
 
 --------------------------------------------------------------
 
